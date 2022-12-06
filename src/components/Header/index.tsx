@@ -1,6 +1,14 @@
-import { Flex, Grid, Image } from '@chakra-ui/react';
+import { Flex, Grid, Icon, Image } from '@chakra-ui/react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import { FaChevronLeft } from 'react-icons/fa'
 
 const Header = () => {
+  const { asPath } = useRouter();
+
+  const isHomePage = asPath === '/';
+
   return (
     <Flex
       as="header"
@@ -22,6 +30,16 @@ const Header = () => {
         justifyContent="center"
         templateColumns="repeat(3, 1fr)"
       >
+
+        {!isHomePage && (
+          <Link href='/'>
+            <Icon
+              as={FaChevronLeft}
+              fontSize={[20]}
+              justifyContent="start"
+            />
+          </Link>
+        )}
 
         <Image width={['81px', "184px"]} 
           src="/images/logo.png" 
